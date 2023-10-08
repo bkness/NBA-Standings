@@ -38,26 +38,28 @@ function createTeamButtons() {
   nbaTeams.forEach(team => {
     console.log(team)
     var button = document.createElement('button');
-    button.style.background = 'linear-gradient(to bottom, #FF4E50, #F9D423)';
-    button.style.border = 'none';
-    button.style.color = 'white';
-    button.style.padding = '10px 20px';
-    button.style.textAlign = 'center';
-    button.style.textDecoration = 'none';
-    button.style.display = 'inline-block';
-    button.style.fontSize = '16px';
-    button.style.margin = '4px 2px';
-    button.style.cursor = 'pointer';
-    button.style.borderRadius = '8px';
-    button.style.width = '200px';
-    button.style.height = '65px';
+
+    switch  (team.code) {
+      case 'ATL':
+    button.style.backgroundImage = `url('./assets/images/${'ATL'.toLowerCase()}_photo.avif')`;
+    break;
+    case 'BOS':
+    button.style.backgroundImage = `url('./assets/images/${'BOS'.toLowerCase()}_photo.avif')`;
+    break;
+    case 'BKN':
+    button.style.backgroundImage = `url('./assets/images/${'BKN'.toLowerCase()}_photo.avif')`;
+    break;
+
+    default:
+      button.style.backgroundImage = 'url(./assets/images/default_photo.avif)';
+    }
 
     button.classList.add('team-button');
     button.dataset.teamid = team.id;
     button.innerText = team.name;
     teamContainer.appendChild(button);
 
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function () {  
       console.log('click');
       var teamId = this.dataset.teamid;
       searchTeamStandings(teamId);
@@ -139,17 +141,19 @@ function fetchTeamStandings(data) {
     var lossesAway = standings.loss.away;
 
     var teamInfoHTML = `
-        <h2>${teamName}</h2>
-        <img src="${teamLogoUrl}" alt="${teamName} Logo">
-       <p> Team Nickname: ${teamNickname}<p>
-       <p>Season Rank: ${seasonRank}
-       <p>Season Wins: ${winsAll}<p>
-        <p>Games Won at Home: ${winsHome}<p>
-        <p>Games Won Away: ${winsAway}<p>
-       <p>Season Losses: ${lossesAll}
-        <p>Games Lost at Home: ${lossesHome}<p>
-       <p>Games Lost Away: ${lossesAway}<p>
-      `;
+    <div class="center-content">     
+    <h2 class="center-text">${teamName}</h2>
+        <img class="center-img" src="${teamLogoUrl}" alt="${teamName} Logo">
+       <p class="center-text"> Team Nickname: ${teamNickname}<p>
+       <p class="center-text">Season Rank: ${seasonRank}
+       <p class="center-text">Season Wins: ${winsAll}<p>
+        <p class="center-text">Games Won at Home: ${winsHome}<p>
+        <p class="center-text">Games Won Away: ${winsAway}<p>
+       <p class="center-text">Season Losses: ${lossesAll}
+        <p class="center-text">Games Lost at Home: ${lossesHome}<p>
+        <p class="center-text">Games Lost Away: ${lossesAway}<p>
+      </div>
+       `;
 
     teamInfoElement.innerHTML = teamInfoHTML;
   } else {
