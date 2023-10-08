@@ -38,6 +38,20 @@ function createTeamButtons() {
   nbaTeams.forEach(team => {
     console.log(team)
     var button = document.createElement('button');
+    button.style.background = 'linear-gradient(to bottom, #FF4E50, #F9D423)';
+    button.style.border = 'none';
+    button.style.color = 'white';
+    button.style.padding = '10px 20px';
+    button.style.textAlign = 'center';
+    button.style.textDecoration = 'none';
+    button.style.display = 'inline-block';
+    button.style.fontSize = '16px';
+    button.style.margin = '4px 2px';
+    button.style.cursor = 'pointer';
+    button.style.borderRadius = '8px';
+    button.style.width = '200px';
+    button.style.height = '65px';
+
     button.classList.add('team-button');
     button.dataset.teamid = team.id;
     button.innerText = team.name;
@@ -58,31 +72,31 @@ document.addEventListener('DOMContentLoaded', function () {
   createTeamButtons();
 
   // Get the modal
-var modal = document.getElementById("myModal");
+  var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("yearSelector");
+  // Get the button that opens the modal
+  var btn = document.getElementById("yearSelector");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  console.log("button has been clickethed");
-  modal.style.display = "block";
-}
+  // When the user clicks the button, open the modal 
+  btn.onclick = function () {
+    console.log("button has been clickethed");
+    modal.style.display = "block";
+  }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
     modal.style.display = "none";
   }
-}
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 
 });
 
@@ -125,17 +139,17 @@ function fetchTeamStandings(data) {
     var lossesAway = standings.loss.away;
 
     var teamInfoHTML = `
-      <h2>${teamName}</h2>
-      <img src="${teamLogoUrl}" alt="${teamName} Logo">
-     <p> Team Nickname: ${teamNickname}<p>
-     <p>Season Rank: ${seasonRank}
-     <p>Season Wins: ${winsAll}<p>
-      <p>Games Won at Home: ${winsHome}<p>
-      <p>Games Won Away: ${winsAway}<p>
-     <p>Season Losses: ${lossesAll}
-      <p>Games Lost at Home: ${lossesHome}<p>
-     <p>Games Lost Away: ${lossesAway}<p>
-    `;
+        <h2>${teamName}</h2>
+        <img src="${teamLogoUrl}" alt="${teamName} Logo">
+       <p> Team Nickname: ${teamNickname}<p>
+       <p>Season Rank: ${seasonRank}
+       <p>Season Wins: ${winsAll}<p>
+        <p>Games Won at Home: ${winsHome}<p>
+        <p>Games Won Away: ${winsAway}<p>
+       <p>Season Losses: ${lossesAll}
+        <p>Games Lost at Home: ${lossesHome}<p>
+       <p>Games Lost Away: ${lossesAway}<p>
+      `;
 
     teamInfoElement.innerHTML = teamInfoHTML;
   } else {
