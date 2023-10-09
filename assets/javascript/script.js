@@ -32,26 +32,27 @@ var nbaTeams = [
   { id: 40, name: 'Utah Jazz', nickname: 'Jazz', code: 'UTA', city: 'Utah' },
   { id: 41, name: 'Washington Wizards', nickname: 'Wizards', code: 'WAS', city: 'Washington' }
 ];
-
+// dynamially creating out buttons and appending them to the page so the user can interact with them
 function createTeamButtons() {
   var teamContainer = document.querySelector('.space-y-2');
   nbaTeams.forEach(team => {
     console.log(team)
     var button = document.createElement('button');
-
-    switch  (team.code) {
+    // IMAGES STILL NEED TO BE ADDED TO THE REST OF THE TEAMS
+    // functionality to change team pictures based off photo name and relative path using default photos until other team photos are incorporated 
+    switch (team.code) {
       case 'ATL':
-    button.style.backgroundImage = `url('./assets/images/${'ATL'.toLowerCase()}_photo.avif')`;
-    break;
-    case 'BOS':
-    button.style.backgroundImage = `url('./assets/images/${'BOS'.toLowerCase()}_photo.avif')`;
-    break;
-    case 'BKN':
-    button.style.backgroundImage = `url('./assets/images/${'BKN'.toLowerCase()}_photo.avif')`;
-    break;
+        button.style.backgroundImage = `url('./assets/images/${'ATL'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'BOS':
+        button.style.backgroundImage = `url('./assets/images/${'BOS'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'BKN':
+        button.style.backgroundImage = `url('./assets/images/${'BKN'.toLowerCase()}_photo.avif')`;
+        break;
 
-    default:
-      button.style.backgroundImage = 'url(./assets/images/default_photo.avif)';
+      default:
+        button.style.backgroundImage = 'url(./assets/images/default_photo.avif)';
     }
 
     button.classList.add('team-button');
@@ -59,9 +60,10 @@ function createTeamButtons() {
     button.innerText = team.name;
     teamContainer.appendChild(button);
 
-    button.addEventListener('click', function () {  
+    button.addEventListener('click', function () {
       console.log('click');
       var teamId = this.dataset.teamid;
+      // searches a team id  in the api hen a button is clicked 
       searchTeamStandings(teamId);
     });
   });
@@ -73,36 +75,35 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log("DOM Loaded");
   createTeamButtons();
 
-  // Get the modal
   var modal = document.getElementById("myModal");
-
-  // Get the button that opens the modal
   var btn = document.getElementById("yearSelector");
-
-  // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
+  var submitYearButton = document.getElementById("submitYear");
 
-  // When the user clicks the button, open the modal 
   btn.onclick = function () {
-    console.log("button has been clickethed");
-    modal.style.display = "block";
+      modal.style.display = "block";
   }
 
-  // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
-    modal.style.display = "none";
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function (event) {
-    if (event.target == modal) {
       modal.style.display = "none";
-    }
   }
 
+  window.onclick = function (event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+
+  submitYearButton.addEventListener('click', function () {
+      var selectedYear = document.getElementById("yearSelect").value;
+      console.log("Selected Year:", selectedYear);
+
+      // Close the modal after selecting a year
+      modal.style.display = "none";
+  });
 });
 
-
+// our api for grabing team standings data
 async function searchTeamStandings(teamId) {
   var teamUrl = `https://api-nba-v1.p.rapidapi.com/standings?league=standard&season=2022&team=${teamId}`;
   var options = {
@@ -122,6 +123,7 @@ async function searchTeamStandings(teamId) {
   }
 }
 
+// accessing the data points based on json data returned
 function fetchTeamStandings(data) {
   var teamInfoElement = document.getElementById('team-info');
 
@@ -140,6 +142,7 @@ function fetchTeamStandings(data) {
     var lossesHome = standings.loss.home;
     var lossesAway = standings.loss.away;
 
+    // here we dynamically create a spot on our html that our accessed data can be incorporated with
     var teamInfoHTML = `
     <div class="center-content">     
     <h2 class="center-text">${teamName}</h2>
@@ -160,3 +163,40 @@ function fetchTeamStandings(data) {
     teamInfoElement.innerHTML = 'No statistics available for this team and year.';
   }
 }
+
+
+function fetchNbaBasketballGifs(apiKey, searchTerm) {
+  // URL for gif request thr9ough the api
+  var giphyApiUrl = `https://api.giphy.com/v1/gifs/search?q=${searchTerm}&&api_key=${giphyApiKey}`;
+
+  //API request using the fetch function
+  return fetch(giphyApiUrl)
+    .then((response) => {
+      // Checks for our response 200 which means it is working
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      // Parse the JSON response
+      return response.json();
+    })
+    .then((data) => {
+      // Extract the GIFs from the response data
+      var gifs = data.data.map((gif) => gif.images.original.url);
+
+      return gifs;
+    })//if we arent able to pull anything displays our error
+    .catch((error) => {
+      console.error('Error fetching NBA basketball GIFs:', error);
+    });
+}
+
+///usage for the key and our search term just nba baskertball
+var giphyApiKey = 'ehhVqXyAm0xa78JH81Upx5S2xknqbRjl';
+var searchTerm = 'NBA basketball';
+
+
+fetchNbaBasketballGifs(giphyApiKey, searchTerm)
+  .then((gifs) => {
+    console.log('NBA basketball GIFs:', gifs);
+  });
