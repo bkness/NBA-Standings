@@ -138,6 +138,7 @@ function fetchTeamStandings(data) {
   if (data && data.response && data.response.length > 0) {
     var standings = data.response[0];
 
+    var seasonYear = data.parameters.season;
     var teamName = standings.team ? standings.team.name : 'N/A';
     var teamLogoUrl = standings.team ? standings.team.logo : 'N/A';
     var teamNickname = standings.team ? standings.team.nickname : 'N/A';
@@ -153,9 +154,10 @@ function fetchTeamStandings(data) {
     // here we dynamically create a spot on our html that our accessed data can be incorporated with
     var teamInfoHTML = `
     <div class="center-content">     
-    <h2 class="center-text">${teamName}</h2>
+     <h2 class="center-text">${teamName}</h2>
         <img class="center-img" src="${teamLogoUrl}" alt="${teamName} Logo">
-       <p class="center-text"> Team Nickname: ${teamNickname}<p>
+        <p class="center-text">${seasonYear}<p>
+        <p class="center-text"> Team Nickname: ${teamNickname}<p>
        <p class="center-text">Season Rank: ${seasonRank}
        <p class="center-text">Season Wins: ${winsAll}<p>
         <p class="center-text">Games Won at Home: ${winsHome}<p>
