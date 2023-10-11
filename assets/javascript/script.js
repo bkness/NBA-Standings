@@ -40,6 +40,11 @@ function createTeamButtons() {
   nbaTeams.forEach(team => {
     console.log(team)
     var button = document.createElement('button');
+   
+    // if (/* condition to determine if this button should have the special style */) {
+    //   button.classList.add('special-button');
+    // }
+
     // IMAGES STILL NEED TO BE ADDED TO THE REST OF THE TEAMS
     // functionality to change team pictures based off photo name and relative path using default photos until other team photos are incorporated 
     switch (team.code) {
@@ -76,9 +81,34 @@ function createTeamButtons() {
       case 'HOU':
         button.style.backgroundImage = `url('./assets/images/${'HOU'.toLowerCase()}_photo.avif')`;
         break;
-
-
-
+      case 'IND':
+        button.style.backgroundImage = `url('./assets/images/${'IND'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'LAC':
+        button.style.backgroundImage = `url('./assets/images/${'LAC'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'LAL':
+        button.style.backgroundImage = `url('./assets/images/${'LAL'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'MEM':
+        button.style.backgroundImage = `url('./assets/images/${'MEM'.toLowerCase()}_photo.avif')`;
+        break;
+        case 'MIA':
+          button.style.backgroundImage = `url('./assets/images/${'MIA'.toLowerCase()}_photo.avif')`;
+          break;
+        case 'MIL':
+          button.style.backgroundImage = `url('./assets/images/${'MIL'.toLowerCase()}_photo.avif')`;
+          break;
+        case 'MIN':
+          button.style.backgroundImage = `url('./assets/images/${'MIN'.toLowerCase()}_photo.avif')`;
+          break;
+        case 'NOP':
+          button.style.backgroundImage = `url('./assets/images/${'NOP'.toLowerCase()}_photo.avif')`;
+          break;
+        case 'NYK':
+          button.style.backgroundImage = `url('./assets/images/${'NYK'.toLowerCase()}_photo.avif')`;
+          break;
+  
 
       default:
         button.style.backgroundImage = 'url(./assets/images/default_photo.avif)';
