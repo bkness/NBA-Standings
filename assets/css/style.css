@@ -54,7 +54,7 @@
  }
 
 #team-info {
-  height: 45%;
+  height: 500px
 }
 
  .stats-container {
@@ -86,6 +86,10 @@
      opacity: 1
    }
  }
+
+#gif-display {
+  margin-top: 8px;
+}
 
  /* The Close Button */
  .close {
@@ -136,5 +140,6 @@
     justify-content: flex-end;
     flex-direction: column-reverse;
     height: 50%;
+    -webkit-overflow-scrolling: touch;
   }
  }
