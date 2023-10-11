@@ -53,6 +53,10 @@
    animation-duration: 0.4s;
  }
 
+#team-info {
+  height: 45%;
+}
+
  .stats-container {
   width: 80%; /* Adjust this value as needed */
   margin: 0 auto; /* This centers the container on the page */

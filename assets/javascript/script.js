@@ -1,5 +1,5 @@
 // added an array to use with the dynamically created buttons   
-  
+
 var selectedYear = 2022;
 
 var nbaTeams = [
@@ -52,9 +52,32 @@ function createTeamButtons() {
       case 'BKN':
         button.style.backgroundImage = `url('./assets/images/${'BKN'.toLowerCase()}_photo.avif')`;
         break;
-        case 'CHA':
-          button.style.backgroundImage = `url('./assets/images/${'CHA'.toLowerCase()}_photo.avif')`;
-          break;
+      case 'CHA':
+        button.style.backgroundImage = `url('./assets/images/${'CHA'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'CHI':
+        button.style.backgroundImage = `url('./assets/images/${'CHI'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'CLE':
+        button.style.backgroundImage = `url('./assets/images/${'CLE'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'DAL':
+        button.style.backgroundImage = `url('./assets/images/${'DAL'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'DEN':
+        button.style.backgroundImage = `url('./assets/images/${'DEN'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'DET':
+        button.style.backgroundImage = `url('./assets/images/${'DET'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'GSW':
+        button.style.backgroundImage = `url('./assets/images/${'GSW'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'HOU':
+        button.style.backgroundImage = `url('./assets/images/${'HOU'.toLowerCase()}_photo.avif')`;
+        break;
+
+
 
 
       default:
@@ -71,6 +94,23 @@ function createTeamButtons() {
       var teamId = this.dataset.teamid;
       // searches a team id  in the api hen a button is clicked 
       searchTeamStandings(teamId);
+
+      //Moved this to this position so when the team button is clicked it will genrate and display the gif simoltaneously and change when a new one is also
+      fetchNbaBasketballGifs(giphyApiKey, searchTerm)
+        .then((gifs) => {
+          console.log('NBA basketball GIFs:', gifs);
+          var randomIndex = Math.floor(Math.random() * gifs.length);
+          var image = gifs[randomIndex];
+          var imageEl = document.createElement('img');
+          imageEl.src = image;
+
+          document.getElementById('gif-image').innerHTML = "";
+          document.getElementById('gif-image').append(imageEl);
+
+
+
+        });
+
     });
   });
 }
@@ -87,27 +127,27 @@ document.addEventListener('DOMContentLoaded', function () {
   var submitYearButton = document.getElementById("submitYear"); // Corrected this line
 
   btn.onclick = function () {
-      modal.style.display = "block";
+    modal.style.display = "block";
   }
 
   span.onclick = function () {
-      modal.style.display = "none";
+    modal.style.display = "none";
   }
 
   window.onclick = function (event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
   }
 
   submitYearButton.addEventListener('click', function () {
-      var newSelectedYear = document.getElementById("yearSelect").value;
-      console.log("Selected Year:", newSelectedYear);
+    var newSelectedYear = document.getElementById("yearSelect").value;
+    console.log("Selected Year:", newSelectedYear);
 
-selectedYear = newSelectedYear;
+    selectedYear = newSelectedYear;
 
-      // Close the modal after selecting a year
-      modal.style.display = "none";
+    // Close the modal after selecting a year
+    modal.style.display = "none";
   });
 });
 
@@ -193,6 +233,7 @@ function fetchNbaBasketballGifs(apiKey, searchTerm) {
     .then((data) => {
       // Extract the GIFs from the response data
       var gifs = data.data.map((gif) => gif.images.original.url);
+      console
 
       return gifs;
     })//if we arent able to pull anything displays our error
