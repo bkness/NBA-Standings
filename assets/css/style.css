@@ -54,13 +54,14 @@
    animation-duration: 0.4s;
  }
 
+
 #team-info {
   height: 100%;
 }
 
  .stats-container {
   width: 100%; /* Adjust this value as needed */
-  margin: 0 auto; /* This centers the container on the page */
+  margin: 0 auto;/* This centers the container on the page*/
 }
  
  /* Add Animation */
@@ -92,19 +93,6 @@
   margin-top: 8px;
 }
 
-#yearSelector {
-  font-size: 1.2em; /* Increase font size */
-  padding: 10px 20px; /* Add some padding to make the button larger */
-  background-color: #007bff; /* Change background color */
-  color: #fff; /* Change text color */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Add rounded corners */
-  cursor: pointer;
-}
-
-#yearSelector:hover {
-  background-color: #0056b3; /* Change background color on hover */
-}
   
 /* Add the custom CSS code here */
     #yearSelector {
