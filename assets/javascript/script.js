@@ -52,10 +52,51 @@ function createTeamButtons() {
       case 'BKN':
         button.style.backgroundImage = `url('./assets/images/${'BKN'.toLowerCase()}_photo.avif')`;
         break;
-        case 'CHA':
-          button.style.backgroundImage = `url('./assets/images/${'CHA'.toLowerCase()}_photo.avif')`;
-          break;
-        
+      case 'CHA':
+        button.style.backgroundImage = `url('./assets/images/${'CHA'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'CHI':
+        button.style.backgroundImage = `url('./assets/images/${'CHI'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'CLE':
+        button.style.backgroundImage = `url('./assets/images/${'CLE'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'DAL':
+        button.style.backgroundImage = `url('./assets/images/${'DAL'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'DEN':
+        button.style.backgroundImage = `url('./assets/images/${'DEN'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'DET':
+        button.style.backgroundImage = `url('./assets/images/${'DET'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'GSW':
+        button.style.backgroundImage = `url('./assets/images/${'GSW'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'HOU':
+        button.style.backgroundImage = `url('./assets/images/${'HOU'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'IND':
+        button.style.backgroundImage = `url('./assets/images/${'IND'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'LAC':
+        button.style.backgroundImage = `url('./assets/images/${'LAC'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'LAL':
+        button.style.backgroundImage = `url('./assets/images/${'LAL'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'MEM':
+        button.style.backgroundImage = `url('./assets/images/${'MEM'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'MIA':
+        button.style.backgroundImage = `url('./assets/images/${'MIA'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'MIL':
+        button.style.backgroundImage = `url('./assets/images/${'MIL'.toLowerCase()}_photo.avif')`;
+        break;
+      case 'MIN':
+        button.style.backgroundImage = `url('./assets/images/${'MIN'.toLowerCase()}_photo.avif')`;
+        break;
       // creates buttons for buttons with no image created
       default:
         button.style.backgroundImage = 'url(./assets/images/default_photo.avif)';
